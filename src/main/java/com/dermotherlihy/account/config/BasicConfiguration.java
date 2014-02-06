@@ -2,7 +2,11 @@ package com.dermotherlihy.account.config;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.yammer.dropwizard.config.Configuration;
+import com.yammer.dropwizard.db.DatabaseConfiguration;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,23 +17,13 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 public class BasicConfiguration extends Configuration{
 
-
-    @NotEmpty
+    @Valid
+    @NotNull
     @JsonProperty
-    private String template;
+    private DatabaseConfiguration database = new DatabaseConfiguration();
 
-    @NotEmpty
-    @JsonProperty
-    private String defaultName = "Stranger";
-
-    public String getTemplate() {
-        return template;
+    public DatabaseConfiguration getDatabaseConfiguration() {
+        return database;
     }
-
-    public String getDefaultName() {
-        return defaultName;
-    }
-
-
 
 }

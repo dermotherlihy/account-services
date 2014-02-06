@@ -1,4 +1,4 @@
-package com.dermotherlihy.account.service;
+package com.dermotherlihy.account.rest.endpoint;
 
 import com.yammer.metrics.core.HealthCheck;
 
@@ -9,11 +9,11 @@ import com.yammer.metrics.core.HealthCheck;
  * Time: 19:28
  * To change this template use File | Settings | File Templates.
  */
-public class AccountHealthCheck extends HealthCheck{
+public class HealthCheckEndpoint extends HealthCheck{
 
     private final String template;
 
-    protected AccountHealthCheck(String template) {
+    public HealthCheckEndpoint(String template) {
         super(template);
         this.template = template;
     }
