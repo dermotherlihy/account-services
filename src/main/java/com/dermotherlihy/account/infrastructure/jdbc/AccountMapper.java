@@ -4,6 +4,7 @@ import com.dermotherlihy.account.domain.model.Account;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -16,11 +17,14 @@ import java.sql.SQLException;
  */
 public class AccountMapper implements ResultSetMapper<Account>{
 
-
     @Override
     public Account map(int i, ResultSet resultSet, StatementContext statementContext) throws SQLException {
-        String id= resultSet.getString("id");
-        String name= resultSet.getString("name");
-        return new Account.Builder().setId(Integer.valueOf(id)).setUserName(name).build();
+        Integer id= resultSet.getInt("ID");
+        String userName= resultSet.getString("ACCOUNT_NAME");
+        String sex= resultSet.getString("SEX");
+        Date dob= resultSet.getDate("DOB");
+        Date created = resultSet.getDate("CREATED");
+        Date modified =resultSet.getDate("MODIFIED");
+        return new Account.Builder().setId(id).setUserName(userName).setSex(sex).setDob(dob).setCreated(created).setModified(modified).build();
     }
 }

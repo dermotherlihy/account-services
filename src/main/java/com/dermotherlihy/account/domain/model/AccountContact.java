@@ -1,5 +1,7 @@
 package com.dermotherlihy.account.domain.model;
 
+import com.google.common.base.Optional;
+
 import java.util.Date;
 
 /**
@@ -13,14 +15,14 @@ public class AccountContact {
 
     private int id;
     private int accountId;
-    private String addressLine1;
-    private String addressLine2;
-    private String addressLine3;
-    private String addressLine4;
-    private String email;
-    private String homePhone;
-    private String mobilePhone;
-    private String isoCountryCode;
+    private Optional<String> addressLine1;
+    private Optional<String> addressLine2;
+    private Optional<String> addressLine3;
+    private Optional<String> addressLine4;
+    private Optional<String> email;
+    private Optional<String> homePhone;
+    private Optional<String> mobilePhone;
+    private Optional<String> isoCountryCode;
     private Date created;
     private Date modified;
 
@@ -36,68 +38,68 @@ public class AccountContact {
         this.accountId = accountId;
     }
 
-    public String getAddressLine1() {
+    public Optional<String> getAddressLine1() {
         return addressLine1;
     }
 
     public void setAddressLine1(String addressLine1) {
-        this.addressLine1 = addressLine1;
+        this.addressLine1 = Optional.of(addressLine1);
     }
 
-    public String getAddressLine2() {
+    public Optional<String> getAddressLine2() {
         return addressLine2;
     }
 
     public void setAddressLine2(String addressLine2) {
-        this.addressLine2 = addressLine2;
+        this.addressLine2 = Optional.of(addressLine2);
     }
 
-    public String getAddressLine3() {
+    public Optional<String> getAddressLine3() {
         return addressLine3;
     }
 
     public void setAddressLine3(String addressLine3) {
-        this.addressLine3 = addressLine3;
+        this.addressLine3 = Optional.of(addressLine3);
     }
 
-    public String getAddressLine4() {
+    public Optional<String> getAddressLine4() {
         return addressLine4;
     }
 
     public void setAddressLine4(String addressLine4) {
-        this.addressLine4 = addressLine4;
+        this.addressLine4 = Optional.of(addressLine4);
     }
 
-    public String getEmail() {
+    public Optional<String> getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = Optional.of(email);
     }
 
-    public String getHomePhone() {
+    public Optional<String> getHomePhone() {
         return homePhone;
     }
 
     public void setHomePhone(String homePhone) {
-        this.homePhone = homePhone;
+        this.homePhone = Optional.of(homePhone);
     }
 
-    public String getMobilePhone() {
+    public Optional<String> getMobilePhone() {
         return mobilePhone;
     }
 
     public void setMobilePhone(String mobilePhone) {
-        this.mobilePhone = mobilePhone;
+        this.mobilePhone = Optional.of(mobilePhone);
     }
 
-    public String getIsoCountryCode() {
+    public Optional<String> getIsoCountryCode() {
         return isoCountryCode;
     }
 
     public void setIsoCountryCode(String isoCountryCode) {
-        this.isoCountryCode = isoCountryCode;
+        this.isoCountryCode = Optional.of(isoCountryCode);
     }
 
     public Date getCreated() {

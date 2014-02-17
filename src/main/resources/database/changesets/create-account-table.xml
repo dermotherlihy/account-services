@@ -9,9 +9,88 @@
             <column name="ID" type="integer" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" />
             </column>
-            <column name="NAME"  type="varchar(30)">
+            <column name="ACCOUNT_NAME"  type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEX"  type="varchar(1)">
+                <constraints nullable="true" />
+            </column>
+            <column name="DOB"  type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="CREATED"  type="TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+            <column name="MODIFIED"  type="TIMESTAMP">
                 <constraints nullable="false" />
             </column>
         </createTable>
+
+        <createTable tableName="ACCOUNT_CONTACT">
+            <column name="ID" type="integer" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="ACCOUNT_ID" type="integer" >
+                <constraints nullable="false" />
+            </column>
+            <column name="TITLE"  type="varchar(10)">
+                <constraints nullable="true" />
+            </column>
+            <column name="FIRST_NAME"  type="varchar(60)">
+                <constraints nullable="true" />
+            </column>
+            <column name="MIDDLE_NAME"  type="varchar(60)">
+                <constraints nullable="true" />
+            </column>
+            <column name="SURNAME"  type="varchar(60)">
+                <constraints nullable="true" />
+            </column>
+             <column name="HOME_PHONE"  type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="WORK_PHONE"  type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="MOBILE_PHONE"  type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="ADDRESS_LINE_1"  type="varchar(200)">
+                <constraints nullable="true" />
+            </column>
+            <column name="ADDRESS_LINE_2"  type="varchar(200)">
+                <constraints nullable="true" />
+            </column>
+            <column name="ADDRESS_LINE_3"  type="varchar(200)">
+                <constraints nullable="true" />
+            </column>
+            <column name="ADDRESS_LINE_4"  type="varchar(200)">
+                <constraints nullable="true" />
+            </column>
+            <column name="COUNTRY_ISO_CODE"  type="varchar(3)">
+                <constraints nullable="true" />
+            </column>
+            <column name="EMAIL"  type="varchar(60)">
+                <constraints nullable="true" />
+            </column>
+            <column name="CREATED"  type="TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+            <column name="MODIFIED"  type="TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+      </createTable>
+
     </changeSet>
+
+
+    <changeSet id="2" author="Dermot Herlihy">
+        <addForeignKeyConstraint baseColumnNames="ACCOUNT_ID"
+                                 baseTableName="ACCOUNT_CONTACT"
+                                 constraintName="fk_account_contact_account_id"
+                                 referencedColumnNames="ID"
+                                 referencedTableName="ACCOUNT"/>
+    </changeSet>
+
+
+
  </databaseChangeLog>

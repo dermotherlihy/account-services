@@ -9,5 +9,38 @@ package com.dermotherlihy.account.domain.model;
  */
 public enum Sex {
 
-    MALE,FEMALE;
+    MALE('M',"MALE"),FEMALE('F',"FEMALE");
+
+    private char code;
+    private String description;
+
+    private Sex(char code, String description) {
+        this.code = code;
+        this.description=description;
+    }
+
+    public static Sex valueOf(char letter){
+        switch(letter){
+
+            case 'm':
+            case 'M':{
+                return MALE;
+            }
+            case 'f':
+            case 'F':{
+                return FEMALE;
+            }
+            default:{
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
+    public char getCode() {
+        return code;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }

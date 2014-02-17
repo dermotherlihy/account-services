@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.skife.jdbi.v2.StatementContext;
+import org.springframework.util.StringUtils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,6 +34,7 @@ public class AccountMapperUTest {
     public void beforeTest(){
         MockitoAnnotations.initMocks(this);
     }
+
     @Test
     public void testAccountRowMapper() throws Exception{
        Account testAccount = new AccountTestData().getTestAccount();
@@ -40,11 +42,16 @@ public class AccountMapperUTest {
        Assert.assertEquals(testAccount.getId(), account.getId());
        Assert.assertEquals(testAccount.getUserName(), account.getUserName());
     }
+
     private ResultSet getTestAccountResultSet(Account testAccount) throws SQLException {
         ResultSet resultSetMock = Mockito.mock(ResultSet.class);
         Mockito.when(resultSetMock.next()).thenReturn(true).thenReturn(false);
-        Mockito.when(resultSetMock.getString("id")).thenReturn(""+testAccount.getId());
-        Mockito.when(resultSetMock.getString("name")).thenReturn(testAccount.getUserName());
+        Mockito.when(resultSetMock.getInt("ID")).thenReturn(AccountTestData.ID);
+        Mockito.when(resultSetMock.getString("ACCOUNT_NAME")).thenReturn(AccountTestData.USERNAME);
+        Mockito.when(resultSetMock.getString("CREATED")).thenReturn(AccountTestData.CREATED.toString());
+        Mockito.when(resultSetMock.getString("MODIFIED")).thenReturn(AccountTestData.MODIFIED.toString());
+        Mockito.when(resultSetMock.getString("DOB")).thenReturn(AccountTestData.DATE_OF_BIRTH.toString());
+        Mockito.when(resultSetMock.getString("SEX")).thenReturn(""+AccountTestData.SEX_MALE.getCode());
         return resultSetMock;
     }
 
