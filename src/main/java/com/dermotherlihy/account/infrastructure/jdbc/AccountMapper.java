@@ -25,6 +25,6 @@ public class AccountMapper implements ResultSetMapper<Account>{
         Date dob= resultSet.getDate("DOB");
         Date created = resultSet.getDate("CREATED");
         Date modified =resultSet.getDate("MODIFIED");
-        return new Account.Builder().setId(id).setUserName(userName).setSex(sex).setDob(dob).setCreated(created).setModified(modified).build();
+        return new Account.Builder().setId(id).setUsername(userName).setSex(sex).setDob(dob).setCreated(created).setModified(modified).build();
     }
 }

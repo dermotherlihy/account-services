@@ -16,8 +16,8 @@ public class AccountUTest {
     @Test
     public void testAccountCreationWithUserNameOnly(){
         String username="Dermot";
-        Account account = new Account.Builder().setUserName("Dermot").build();
-        Assert.assertTrue("Dermot".equals(account.getUserName()));
+        Account account = new Account.Builder().setUsername("Dermot").build();
+        Assert.assertTrue("Dermot".equals(account.getUsername()));
         Assert.assertTrue(account.getId()==0);
 
     }

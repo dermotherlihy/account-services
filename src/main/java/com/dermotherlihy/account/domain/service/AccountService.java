@@ -5,8 +5,6 @@ import com.dermotherlihy.account.domain.model.AccountDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
-
 /**
  * Created with IntelliJ IDEA.
  * User: dermot.herlihy
@@ -24,7 +22,7 @@ public class AccountService {
         this.accountDAO=accountDAO;
     }
     public void insert(Account account){
-        accountDAO.insert(account.getId(), account.getUserName());
+        accountDAO.insert(account);
     }
     public Account getByName(String name){
         return accountDAO.findNameByName(name);

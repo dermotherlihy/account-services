@@ -3,8 +3,6 @@ package com.dermotherlihy.account.testdata;
 import com.dermotherlihy.account.domain.model.Account;
 import com.dermotherlihy.account.domain.model.Sex;
 
-import java.sql.ResultSet;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -25,7 +23,7 @@ public class AccountTestData {
     public static final Sex SEX_MALE= Sex.MALE;
 
     public static Account getTestAccount(){
-        return new Account.Builder().setId(ID).setUserName(USERNAME).setCreated(CREATED).setModified(MODIFIED).setSex(SEX_MALE).setUserName(USERNAME).setDob(DATE_OF_BIRTH).build();
+        return new Account.Builder().setId(ID).setUsername(USERNAME).setCreated(CREATED).setModified(MODIFIED).setSex(SEX_MALE).setUsername(USERNAME).setDob(DATE_OF_BIRTH).build();
     }
 
 }

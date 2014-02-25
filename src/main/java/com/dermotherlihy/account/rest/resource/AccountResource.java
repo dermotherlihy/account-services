@@ -10,18 +10,25 @@ package com.dermotherlihy.account.rest.resource;
 public class AccountResource {
 
     private final int id;
-    private final String userName;
+    private final String username;
+    private final char sex;
 
-    public AccountResource(int id, String userName){
+
+    public AccountResource(int id, String username, char sex){
         this.id=id;
-        this.userName =userName;
+        this.username =username;
+        this.sex=sex;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
+    }
+
+    public char getSex() {
+        return sex;
     }
 }

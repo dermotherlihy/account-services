@@ -9,7 +9,7 @@
             <column name="ID" type="integer" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" />
             </column>
-            <column name="ACCOUNT_NAME"  type="varchar(60)">
+            <column name="USERNAME"  type="varchar(60)">
                 <constraints nullable="false"/>
             </column>
             <column name="SEX"  type="varchar(1)">

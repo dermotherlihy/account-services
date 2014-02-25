@@ -1,7 +1,6 @@
 package com.dermotherlihy.account.infrastructure.jdbc;
 
 import com.dermotherlihy.account.domain.model.Account;
-import com.dermotherlihy.account.infrastructure.jdbc.AccountMapper;
 
 import com.dermotherlihy.account.testdata.AccountTestData;
 import org.junit.Assert;
@@ -11,7 +10,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.skife.jdbi.v2.StatementContext;
-import org.springframework.util.StringUtils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,7 +38,7 @@ public class AccountMapperUTest {
        Account testAccount = new AccountTestData().getTestAccount();
        Account account = testObj.map(0,getTestAccountResultSet(testAccount),statementContext);
        Assert.assertEquals(testAccount.getId(), account.getId());
-       Assert.assertEquals(testAccount.getUserName(), account.getUserName());
+       Assert.assertEquals(testAccount.getUsername(), account.getUsername());
     }
 
     private ResultSet getTestAccountResultSet(Account testAccount) throws SQLException {

@@ -1,7 +1,5 @@
 package com.dermotherlihy.account.domain.model;
 
-import org.skife.jdbi.v2.sqlobject.Bind;
-
 import java.util.Date;
 
 /**
@@ -14,7 +12,7 @@ import java.util.Date;
 public class Account {
 
     private int id;
-    protected String userName;
+    protected String username;
     private Date dob;
     private Sex sex;
     private Date modified;
@@ -22,7 +20,7 @@ public class Account {
 
     private Account(Builder builtObject) {
         this.id = builtObject.getId();
-        this.userName=builtObject.getUserName();
+        this.username =builtObject.getUsername();
         this.sex=builtObject.getSex();
         this.created=builtObject.getCreated();
         this.modified=builtObject.getModified();
@@ -31,8 +29,8 @@ public class Account {
     public int getId() {
         return id;
     }
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
     public Date getDob() {
@@ -54,7 +52,7 @@ public class Account {
     public static class Builder {
 
         private int id;
-        private String userName;
+        private String username;
         private Sex sex;
         private Date dob;
         private Date modified;
@@ -68,16 +66,16 @@ public class Account {
             return id;
         }
 
-        public String getUserName() {
-            return userName;
+        public String getUsername() {
+            return username;
         }
 
         public Sex getSex() {
             return sex;
         }
 
-        public Builder setUserName(String userName) {
-            this.userName = userName;
+        public Builder setUsername(String username) {
+            this.username = username;
             return this;
         }
 

@@ -1,16 +1,16 @@
 package com.dermotherlihy.account.rest.endpoint;
 
 import com.dermotherlihy.account.domain.model.Account;
+import com.dermotherlihy.account.domain.model.Sex;
 import com.dermotherlihy.account.domain.service.AccountService;
 import com.dermotherlihy.account.rest.resource.AccountResource;
 import com.google.common.base.Optional;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,6 +22,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Path("/member")
 @Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class AccountEndpoint {
 
     @Resource
@@ -34,12 +35,13 @@ public class AccountEndpoint {
     @GET
     public AccountResource getMember(@QueryParam("name") Optional<String> name){
       Account account= accountService.getByName(name.get());
-      return new AccountResource(account.getId(),account.getUserName());
+      return new AccountResource(account.getId(),account.getUsername(), account.getSex().getCode());
     }
 
     @POST
-    public void addMember(AccountResource accountResource){
-        accountService.insert(new Account.Builder().setId(accountResource.getId()).setUserName(accountResource.getUserName()).build());
+    public void addMember(@Valid AccountResource accountResource){
+        Account account = new Account.Builder().setUsername(accountResource.getUsername()).setCreated(new Date()).setModified(new Date()).setSex(Sex.valueOf(accountResource.getSex())).build();
+        accountService.insert(account);
     }
 
 }
