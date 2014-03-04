@@ -1,4 +1,4 @@
-package com.dermotherlihy.account.infrastructure.jdbc;
+package com.dermotherlihy.account.jdbi.mapper;
 
 import com.dermotherlihy.account.domain.model.Account;
 import org.skife.jdbi.v2.StatementContext;

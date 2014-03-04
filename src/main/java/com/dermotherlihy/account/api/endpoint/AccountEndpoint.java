@@ -1,9 +1,9 @@
-package com.dermotherlihy.account.rest.endpoint;
+package com.dermotherlihy.account.api.endpoint;
 
 import com.dermotherlihy.account.domain.model.Account;
 import com.dermotherlihy.account.domain.model.Sex;
 import com.dermotherlihy.account.domain.service.AccountService;
-import com.dermotherlihy.account.rest.resource.AccountResource;
+import com.dermotherlihy.account.api.resource.AccountResource;
 import com.google.common.base.Optional;
 
 import javax.annotation.Resource;
@@ -35,11 +35,15 @@ public class AccountEndpoint {
     @GET
     public AccountResource getMember(@QueryParam("name") Optional<String> name){
       Account account= accountService.getByName(name.get());
-      return new AccountResource(account.getId(),account.getUsername(), account.getSex().getCode());
+      AccountResource accountResource = new AccountResource();
+      accountResource.setId(account.getId());
+      accountResource.setUsername(account.getUsername());
+      accountResource.setSex(account.getSex().getCode());
+      return accountResource;
     }
 
     @POST
-    public void addMember(@Valid AccountResource accountResource){
+    public void addMember(@Valid JsonAccountResource accountResource){
         Account account = new Account.Builder().setUsername(accountResource.getUsername()).setCreated(new Date()).setModified(new Date()).setSex(Sex.valueOf(accountResource.getSex())).build();
         accountService.insert(account);
     }

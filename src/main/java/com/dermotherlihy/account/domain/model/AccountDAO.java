@@ -1,14 +1,12 @@
 package com.dermotherlihy.account.domain.model;
 
-import com.dermotherlihy.account.infrastructure.jdbc.AccountMapper;
+import com.dermotherlihy.account.jdbi.mapper.AccountMapper;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.BindBean;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
 import org.springframework.stereotype.Repository;
-
-import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.

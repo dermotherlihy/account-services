@@ -1,4 +1,4 @@
-package com.dermotherlihy.account.infrastructure.jdbc;
+package com.dermotherlihy.account.jdbi.serializer;
 
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.Argument;

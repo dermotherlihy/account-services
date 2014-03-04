@@ -1,4 +1,4 @@
-package com.dermotherlihy.account.rest.endpoint;
+package com.dermotherlihy.account.api.endpoint;
 
 import com.yammer.metrics.core.HealthCheck;
 
