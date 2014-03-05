@@ -20,7 +20,7 @@ public class AccountMapper implements ResultSetMapper<Account>{
     @Override
     public Account map(int i, ResultSet resultSet, StatementContext statementContext) throws SQLException {
         Integer id= resultSet.getInt("ID");
-        String userName= resultSet.getString("ACCOUNT_NAME");
+        String userName= resultSet.getString("USERNAME");
         String sex= resultSet.getString("SEX");
         Date dob= resultSet.getDate("DOB");
         Date created = resultSet.getDate("CREATED");

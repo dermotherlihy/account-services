@@ -2,6 +2,7 @@ package com.dermotherlihy.account.api.resource;
 
 import com.dermotherlihy.account.api.serializer.JsonDateDeserializer;
 import com.dermotherlihy.account.api.serializer.JsonDateSerializer;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -15,58 +16,78 @@ import java.util.Date;
  * Time: 19:10
  * To change this template use File | Settings | File Templates.
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class AccountResource {
 
-    @JsonProperty
+    @JsonProperty(value = "id")
     private int id;
-    @JsonProperty
+
+    @JsonProperty (value = "username")
     private String username;
-    @JsonProperty
+
+    @JsonProperty (value = "sex")
     private char sex;
-    @JsonProperty
+
+    @JsonProperty (value = "dateOfBirth")
+    @JsonSerialize(using = JsonDateSerializer.class)
     @JsonDeserialize(using = JsonDateDeserializer.class)
+    private Date dateOfBirth;
+
+    @JsonProperty(value = "modified")
     @JsonSerialize(using = JsonDateSerializer.class)
     private Date modified;
-    @JsonProperty
-    @JsonDeserialize(using = JsonDateDeserializer.class)
+
     @JsonSerialize(using = JsonDateSerializer.class)
+    @JsonProperty (value = "created")
     private Date created;
 
+
+    public AccountResource() {
+        super();
+    }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public char getSex() {
         return sex;
-    }
-
-    public void setSex(char sex) {
-        this.sex = sex;
     }
 
     public Date getModified() {
         return modified;
     }
 
-    public void setModified(Date modified) {
-        this.modified = modified;
-    }
-
     public Date getCreated() {
         return created;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setSex(char sex) {
+        this.sex = sex;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
     }
 
     public void setCreated(Date created) {

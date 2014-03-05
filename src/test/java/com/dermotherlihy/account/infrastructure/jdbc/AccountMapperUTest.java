@@ -46,7 +46,7 @@ public class AccountMapperUTest {
         ResultSet resultSetMock = Mockito.mock(ResultSet.class);
         Mockito.when(resultSetMock.next()).thenReturn(true).thenReturn(false);
         Mockito.when(resultSetMock.getInt("ID")).thenReturn(AccountTestData.ID);
-        Mockito.when(resultSetMock.getString("ACCOUNT_NAME")).thenReturn(AccountTestData.USERNAME);
+        Mockito.when(resultSetMock.getString("USERNAME")).thenReturn(AccountTestData.USERNAME);
         Mockito.when(resultSetMock.getString("CREATED")).thenReturn(AccountTestData.CREATED.toString());
         Mockito.when(resultSetMock.getString("MODIFIED")).thenReturn(AccountTestData.MODIFIED.toString());
         Mockito.when(resultSetMock.getString("DOB")).thenReturn(AccountTestData.DATE_OF_BIRTH.toString());

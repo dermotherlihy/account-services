@@ -24,8 +24,8 @@ public class AccountService {
     public void insert(Account account){
         accountDAO.insert(account);
     }
-    public Account getByName(String name){
-        return accountDAO.findNameByName(name);
+    public Account findByUsername(String username){
+        return accountDAO.findNameByUsername(username);
     }
 
 }

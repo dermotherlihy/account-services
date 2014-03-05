@@ -1,13 +1,12 @@
 package com.dermotherlihy.account.api.endpoint;
 
+import com.dermotherlihy.account.api.resource.AccountResource;
+import com.dermotherlihy.account.api.resource.factory.AccountResourceFactory;
 import com.dermotherlihy.account.domain.model.Account;
 import com.dermotherlihy.account.domain.model.Sex;
 import com.dermotherlihy.account.domain.service.AccountService;
-import com.dermotherlihy.account.api.resource.AccountResource;
-import com.google.common.base.Optional;
 
 import javax.annotation.Resource;
-import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.Date;
@@ -33,18 +32,14 @@ public class AccountEndpoint {
     }
 
     @GET
-    public AccountResource getMember(@QueryParam("name") Optional<String> name){
-      Account account= accountService.getByName(name.get());
-      AccountResource accountResource = new AccountResource();
-      accountResource.setId(account.getId());
-      accountResource.setUsername(account.getUsername());
-      accountResource.setSex(account.getSex().getCode());
-      return accountResource;
+    public AccountResource getAccountByUserName(@QueryParam("username") String username){
+      Account account= accountService.findByUsername(username);
+      return AccountResourceFactory.createAccountResource(account);
     }
 
     @POST
-    public void addMember(@Valid JsonAccountResource accountResource){
-        Account account = new Account.Builder().setUsername(accountResource.getUsername()).setCreated(new Date()).setModified(new Date()).setSex(Sex.valueOf(accountResource.getSex())).build();
+    public void create(AccountResource accountResource){
+        Account account = new Account.Builder().setUsername(accountResource.getUsername()).setSex(Sex.valueOf(accountResource.getSex())).setDob(accountResource.getDateOfBirth()).setCreated(new Date()).setModified(new Date()).build();
         accountService.insert(account);
     }
 

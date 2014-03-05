@@ -23,7 +23,7 @@ public interface AccountDAO {
 
     @SqlQuery("select * from Account where username = :username")
     @Mapper(AccountMapper.class)
-    Account findNameByName(@Bind("username") String username);
+    Account findNameByUsername(@Bind("username") String username);
 
 
 }
