@@ -1,7 +1,7 @@
 package com.dermotherlihy.account.api.resource;
 
-import com.dermotherlihy.account.api.serializer.JsonDateDeserializer;
-import com.dermotherlihy.account.api.serializer.JsonDateSerializer;
+import com.dermotherlihy.account.api.mapper.JsonDateDeserializer;
+import com.dermotherlihy.account.api.mapper.JsonDateSerializer;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;

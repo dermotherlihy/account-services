@@ -19,7 +19,7 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 
-@Path("/member")
+@Path("/account")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class AccountEndpoint {

@@ -26,9 +26,9 @@
             </column>
         </createTable>
 
-        <createTable tableName="ACCOUNT_CONTACT">
+        <createTable tableName="CONTACT">
             <column name="ID" type="integer" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false" />
+                <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="ACCOUNT_ID" type="integer" >
                 <constraints nullable="false" />
@@ -72,10 +72,10 @@
             <column name="EMAIL"  type="varchar(60)">
                 <constraints nullable="true" />
             </column>
-            <column name="CREATED"  type="TIMESTAMP">
+            <column name="CREATED"  type="TIMESTAMP" defaultValue="CURRENT_TIMESTAMP">
                 <constraints nullable="false" />
             </column>
-            <column name="MODIFIED"  type="TIMESTAMP">
+            <column name="MODIFIED"  type="TIMESTAMP" defaultValue="CURRENT_TIMESTAMP">
                 <constraints nullable="false" />
             </column>
       </createTable>

@@ -1,7 +1,7 @@
 package com.dermotherlihy.account.domain.service;
 
 import com.dermotherlihy.account.domain.model.Account;
-import com.dermotherlihy.account.domain.model.AccountDAO;
+import com.dermotherlihy.account.jdbi.AccountDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

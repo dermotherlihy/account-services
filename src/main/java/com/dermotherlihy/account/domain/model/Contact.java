@@ -11,7 +11,7 @@ import java.util.Date;
  * Time: 19:34
  * To change this template use File | Settings | File Templates.
  */
-public class AccountContact {
+public class Contact {
 
     private int id;
     private int accountId;

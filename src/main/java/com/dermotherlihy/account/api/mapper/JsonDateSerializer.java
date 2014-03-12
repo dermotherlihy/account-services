@@ -1,4 +1,4 @@
-package com.dermotherlihy.account.api.serializer;
+package com.dermotherlihy.account.api.mapper;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;

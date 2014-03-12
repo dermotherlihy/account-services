@@ -1,6 +1,6 @@
 package com.dermotherlihy.account.config;
 
-import com.dermotherlihy.account.domain.model.AccountDAO;
+import com.dermotherlihy.account.jdbi.AccountDAO;
 import com.dermotherlihy.account.domain.service.AccountService;
 import com.dermotherlihy.account.jdbi.serializer.DateAsTimestampArgument;
 import com.dermotherlihy.account.jdbi.serializer.SexAsStringArgument;
@@ -14,11 +14,6 @@ import com.yammer.dropwizard.jdbi.DBIFactory;
 import com.yammer.dropwizard.json.ObjectMapperFactory;
 import com.yammer.dropwizard.migrations.MigrationsBundle;
 import org.skife.jdbi.v2.DBI;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScan.Filter;
-
-
-import javax.ws.rs.Path;
 
 /**
  * Created with IntelliJ IDEA.
@@ -27,8 +22,7 @@ import javax.ws.rs.Path;
  * Time: 18:54
  * To change this template use File | Settings | File Templates.
  */
-@ComponentScan(basePackages= "com.dermotherlihy",
-        includeFilters={@Filter(Path.class)})
+
 public class AccountServiceConfig extends Service<BasicConfiguration>{
 
     public static void main(String[] args) throws Exception{

@@ -1,5 +1,6 @@
-package com.dermotherlihy.account.domain.model;
+package com.dermotherlihy.account.jdbi;
 
+import com.dermotherlihy.account.domain.model.Account;
 import com.dermotherlihy.account.jdbi.mapper.AccountMapper;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.BindBean;
