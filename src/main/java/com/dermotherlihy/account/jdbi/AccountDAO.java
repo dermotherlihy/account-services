@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AccountDAO {
 
-    @SqlUpdate("insert into Account (username, dob, sex, modified, created) values (:username, :dob, :sex, :modified, :created)")
+    @SqlUpdate("insert into Account (username, dob, sex) values (:username, :dob, :sex)")
     void insert(@BindBean Account account);
 
     @SqlQuery("select * from Account where username = :username")

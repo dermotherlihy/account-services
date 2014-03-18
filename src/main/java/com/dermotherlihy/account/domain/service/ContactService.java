@@ -24,4 +24,7 @@ public class ContactService {
         contactDAO.insert(contact);
     }
 
+    public Contact findContactById(Integer contactId) {
+        return null;  //To change body of created methods use File | Settings | File Templates.
+    }
 }

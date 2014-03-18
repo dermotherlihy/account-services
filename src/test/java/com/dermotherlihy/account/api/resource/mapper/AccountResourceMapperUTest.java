@@ -1,4 +1,4 @@
-package com.dermotherlihy.account.api.resource.factory;
+package com.dermotherlihy.account.api.resource.mapper;
 
 import com.dermotherlihy.account.api.resource.AccountResource;
 import com.dermotherlihy.account.domain.model.Account;
@@ -13,7 +13,7 @@ import org.junit.Assert;
  * Time: 19:41
  * To change this template use File | Settings | File Templates.
  */
-public class AccountResourceFactoryUTest {
+public class AccountResourceMapperUTest {
 
 
 
@@ -21,7 +21,7 @@ public class AccountResourceFactoryUTest {
     public void testAccountResourceCreation(){
 
          Account account = AccountTestData.getTestAccount();
-         AccountResource accountResource = AccountResourceFactory.createAccountResource(account);
+         AccountResource accountResource = AccountResourceMapper.createAccountResource(account);
          Assert.assertEquals(account.getDob(), accountResource.getDateOfBirth());
          Assert.assertEquals(account.getUsername(), accountResource.getUsername());
          Assert.assertEquals(account.getSex().getCode(), accountResource.getSex());

@@ -1,5 +1,7 @@
 package com.dermotherlihy.account.api.resource;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Optional;
 
 import java.util.Date;
@@ -11,19 +13,32 @@ import java.util.Date;
  * Time: 19:24
  * To change this template use File | Settings | File Templates.
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class ContactResource {
 
+    @JsonProperty(value = "id")
     private String id;
+    @JsonProperty(value = "account-id")
     private String accountId;
+    @JsonProperty(value = "address-line-1")
     private String addressLine1;
+    @JsonProperty(value = "address-line-2")
     private String addressLine2;
+    @JsonProperty(value = "address-line-3")
     private String addressLine3;
+    @JsonProperty(value = "address-line-4")
     private String addressLine4;
+    @JsonProperty(value = "email")
     private String email;
+    @JsonProperty(value = "home-phone")
     private String homePhone;
+    @JsonProperty(value = "mobile-phone-number")
     private String mobilePhone;
+    @JsonProperty(value = "iso-country-ode")
     private String isoCountryCode;
+    @JsonProperty(value = "created")
     private Date created;
+    @JsonProperty(value = "modified")
     private Date modified;
 
 

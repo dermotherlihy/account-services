@@ -18,10 +18,10 @@
             <column name="DOB"  type="date">
                 <constraints nullable="true" />
             </column>
-            <column name="CREATED"  type="TIMESTAMP">
+            <column name="CREATED"  type="TIMESTAMP" defaultValueDate="CURRENT_TIMESTAMP">
                 <constraints nullable="false" />
             </column>
-            <column name="MODIFIED"  type="TIMESTAMP">
+            <column name="MODIFIED"  type="TIMESTAMP" defaultValueDate="CURRENT_TIMESTAMP">
                 <constraints nullable="false" />
             </column>
         </createTable>
@@ -72,10 +72,10 @@
             <column name="EMAIL"  type="varchar(60)">
                 <constraints nullable="true" />
             </column>
-            <column name="CREATED"  type="TIMESTAMP" defaultValue="CURRENT_TIMESTAMP">
+            <column name="CREATED"  type="TIMESTAMP" defaultValueDate="CURRENT_TIMESTAMP">
                 <constraints nullable="false" />
             </column>
-            <column name="MODIFIED"  type="TIMESTAMP" defaultValue="CURRENT_TIMESTAMP">
+            <column name="MODIFIED"  type="TIMESTAMP" defaultValueDate="CURRENT_TIMESTAMP">
                 <constraints nullable="false" />
             </column>
       </createTable>

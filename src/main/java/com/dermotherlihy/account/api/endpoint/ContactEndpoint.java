@@ -1,18 +1,13 @@
 package com.dermotherlihy.account.api.endpoint;
 
-import com.dermotherlihy.account.api.resource.AccountResource;
 import com.dermotherlihy.account.api.resource.ContactResource;
-import com.dermotherlihy.account.api.resource.factory.AccountResourceFactory;
-import com.dermotherlihy.account.domain.model.Account;
+import com.dermotherlihy.account.api.resource.mapper.ContactResourceMapper;
 import com.dermotherlihy.account.domain.model.Contact;
-import com.dermotherlihy.account.domain.model.Sex;
-import com.dermotherlihy.account.domain.service.AccountService;
 import com.dermotherlihy.account.domain.service.ContactService;
 
 import javax.annotation.Resource;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,15 +21,25 @@ import java.util.Date;
 @Consumes(MediaType.APPLICATION_JSON)
 public class ContactEndpoint {
 
-    @Resource
+
     private ContactService contactService;
+    private ContactResourceMapper contactResourceMapper;
 
     public ContactEndpoint(ContactService accountService) {
         this.contactService=accountService;
+        this.contactResourceMapper = new ContactResourceMapper();
     }
 
     @POST
-    public void create(ContactResource accountResource){
-
+    public void create(ContactResource contactResource){
+        Contact contact = contactResourceMapper.mapContact(contactResource);
+        contactService.insert(contact);
     }
+
+    @GET
+    public ContactResource getContact(@QueryParam("contactId") Integer contactId){
+         Contact contact = contactService.findContactById(contactId);
+         return contactResourceMapper.mapContactResource(contact);
+    }
+
 }

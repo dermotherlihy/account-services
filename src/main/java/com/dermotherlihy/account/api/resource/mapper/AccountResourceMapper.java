@@ -1,4 +1,4 @@
-package com.dermotherlihy.account.api.resource.factory;
+package com.dermotherlihy.account.api.resource.mapper;
 
 import com.dermotherlihy.account.api.resource.AccountResource;
 import com.dermotherlihy.account.domain.model.Account;
@@ -10,7 +10,7 @@ import com.dermotherlihy.account.domain.model.Account;
  * Time: 19:37
  * To change this template use File | Settings | File Templates.
  */
-public class AccountResourceFactory {
+public class AccountResourceMapper {
 
     public static AccountResource createAccountResource(Account account){
         AccountResource accountResource = new AccountResource();
