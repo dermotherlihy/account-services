@@ -15,12 +15,17 @@ public class Contact {
 
     private int id;
     private int accountId;
+    private Optional<String> title;
+    private String firstName;
+    private Optional<String> middleName;
+    private String surname;
     private Optional<String> addressLine1;
     private Optional<String> addressLine2;
     private Optional<String> addressLine3;
     private Optional<String> addressLine4;
     private Optional<String> email;
     private Optional<String> homePhone;
+    private Optional<String> workPhone;
     private Optional<String> mobilePhone;
     private Optional<String> isoCountryCode;
     private Date created;
@@ -29,23 +34,45 @@ public class Contact {
     private Contact(Builder builder) {
         this.id=builder.id;
         this.accountId=builder.accountId;
-        this.addressLine1 = Optional.of(builder.addressLine1);
-        this.addressLine2 = Optional.of(builder.addressLine2);
-        this.addressLine3 = Optional.of(builder.addressLine3);
-        this.addressLine4 = Optional.of(builder.addressLine4);
-        this.email=Optional.of(builder.email);
-        this.homePhone=Optional.of(builder.homePhone);
-        this.mobilePhone=Optional.of(builder.mobilePhone);
-        this.isoCountryCode=Optional.of(builder.isoCountryCode);
+        this.title=Optional.fromNullable(builder.title);
+        this.firstName=builder.firstName;
+        this.middleName=Optional.fromNullable(builder.middleName);
+        this.surname=builder.surname;
+        this.addressLine1 = Optional.fromNullable(builder.addressLine1);
+        this.addressLine2 = Optional.fromNullable(builder.addressLine2);
+        this.addressLine3 = Optional.fromNullable(builder.addressLine3);
+        this.addressLine4 = Optional.fromNullable(builder.addressLine4);
+        this.email=Optional.fromNullable(builder.email);
+        this.homePhone=Optional.fromNullable(builder.homePhone);
+        this.workPhone=Optional.fromNullable(builder.workPhone);
+        this.mobilePhone=Optional.fromNullable(builder.mobilePhone);
+        this.isoCountryCode=Optional.fromNullable(builder.isoCountryCode);
         this.created=builder.created;
         this.modified=builder.modified;
+
     }
 
-    public int getId() {
+    public Optional<String> getTitle() {
+        return title;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public Optional<String> getMiddleName() {
+        return middleName;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public int getAccountId() {
+    public Integer getAccountId() {
         return accountId;
     }
 
@@ -72,6 +99,10 @@ public class Contact {
         return homePhone;
     }
 
+    public Optional<String> getWorkPhone() {
+        return workPhone;
+    }
+
     public Optional<String> getMobilePhone() {
         return mobilePhone;
     }
@@ -92,19 +123,45 @@ public class Contact {
 
         private int id;
         private int accountId;
+        private String title;
+        private String firstName;
+        private String middleName;
+        private String surname;
         private String addressLine1;
         private String addressLine2;
         private String addressLine3;
         private String addressLine4;
         private String email;
         private String homePhone;
+        private String workPhone;
         private String mobilePhone;
         private String isoCountryCode;
         private Date created;
         private Date modified;
 
+
         public Builder setId(int id) {
             this.id = id;
+            return this;
+        }
+
+        public Builder setTitle(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public Builder setFirstName(String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+
+        public Builder setMiddleName(String middleName) {
+            this.middleName = middleName;
+            return this;
+        }
+
+        public Builder setSurname(String surname) {
+            this.surname = surname;
             return this;
         }
 
@@ -163,8 +220,14 @@ public class Contact {
             return this;
         }
 
+        public Builder setWorkPhone(String workPhone) {
+            this.workPhone = workPhone;
+            return this;
+        }
+
         public Contact build(){
             return new Contact(this);
         }
     }
+
  }

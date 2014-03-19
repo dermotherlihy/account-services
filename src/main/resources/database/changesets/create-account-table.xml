@@ -85,7 +85,7 @@
 
     <changeSet id="2" author="Dermot Herlihy">
         <addForeignKeyConstraint baseColumnNames="ACCOUNT_ID"
-                                 baseTableName="ACCOUNT_CONTACT"
+                                 baseTableName="CONTACT"
                                  constraintName="fk_account_contact_account_id"
                                  referencedColumnNames="ID"
                                  referencedTableName="ACCOUNT"/>

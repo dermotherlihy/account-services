@@ -25,6 +25,6 @@ public class ContactService {
     }
 
     public Contact findContactById(Integer contactId) {
-        return null;  //To change body of created methods use File | Settings | File Templates.
+        return contactDAO.findContactById(contactId);
     }
 }

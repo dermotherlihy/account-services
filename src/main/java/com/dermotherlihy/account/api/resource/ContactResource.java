@@ -3,6 +3,7 @@ package com.dermotherlihy.account.api.resource;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Optional;
+import org.joda.time.DateTime;
 
 import java.util.Date;
 
@@ -20,6 +21,14 @@ public class ContactResource {
     private String id;
     @JsonProperty(value = "account-id")
     private String accountId;
+    @JsonProperty(value = "title")
+    private String title;
+    @JsonProperty(value = "first-name")
+    private String firstName;
+    @JsonProperty(value = "middle-name")
+    private String middleName;
+    @JsonProperty(value = "surname")
+    private String surname;
     @JsonProperty(value = "address-line-1")
     private String addressLine1;
     @JsonProperty(value = "address-line-2")
@@ -30,6 +39,8 @@ public class ContactResource {
     private String addressLine4;
     @JsonProperty(value = "email")
     private String email;
+    @JsonProperty(value = "work-phone")
+    private String workPhone;
     @JsonProperty(value = "home-phone")
     private String homePhone;
     @JsonProperty(value = "mobile-phone-number")
@@ -41,13 +52,45 @@ public class ContactResource {
     @JsonProperty(value = "modified")
     private Date modified;
 
-
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
+    }
+
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public Date getModified() {
@@ -136,5 +179,9 @@ public class ContactResource {
 
     public void setAddressLine1(String addressLine1) {
         this.addressLine1 = addressLine1;
+    }
+
+    public void setWorkPhone(String workPhone) {
+        this.workPhone = workPhone;
     }
 }

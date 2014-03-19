@@ -1,7 +1,9 @@
 package com.dermotherlihy.account.jdbi;
 
+import com.dermotherlihy.account.domain.model.Account;
 import com.dermotherlihy.account.domain.model.Contact;
 import com.dermotherlihy.account.jdbi.mapper.AccountMapper;
+import com.dermotherlihy.account.jdbi.mapper.ContactMapper;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.BindBean;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
@@ -20,4 +22,7 @@ public interface ContactDAO {
     @SqlUpdate("insert into contact (account_id, title, first_name, middle_name, surname, home_phone, work_phone, mobile_phone, address_line_1, address_line_2, address_line_3, address_line_4, country_iso_code, email) values (:accountId, :title, :firstName, :middleName, :surname, :homePhone, :workPhone, :mobilePhone, :addressLine1, :addressLine2, :addressLine3, :addressLine4, :countryIsoCode, :email)")
     void insert(@BindBean Contact contact);
 
+    @SqlQuery("select * from contact where id = :id")
+    @Mapper(ContactMapper.class)
+    Contact findContactById(@Bind("id") Integer id);
 }
