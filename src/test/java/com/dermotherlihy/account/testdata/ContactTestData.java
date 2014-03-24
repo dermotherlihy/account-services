@@ -25,21 +25,37 @@ public class ContactTestData {
         String firstName= RandomStringUtils.randomAlphabetic(12);
         String middleName= RandomStringUtils.randomAlphabetic(12);
         String surname= RandomStringUtils.randomAlphabetic(12);
-        String addressLine1 = RandomStringUtils.random(12);
-        String addressLine2 = RandomStringUtils.random(12);;
-        String addressLine3 = RandomStringUtils.random(12);;
-        String addressLine4 = RandomStringUtils.random(12);;
-        String email = RandomStringUtils.random(12)+""+RandomStringUtils.random(6)+".com";
+        String addressLine1 = RandomStringUtils.randomAlphabetic(12);
+        String addressLine2 = RandomStringUtils.randomAlphabetic(12);
+        String addressLine3 = RandomStringUtils.randomAlphabetic(12);
+        String addressLine4 = RandomStringUtils.randomAlphabetic(12);
+        String postcode = RandomStringUtils.randomAlphabetic(12);
+        String email = RandomStringUtils.randomAlphabetic(12)+"@"+RandomStringUtils.random(6)+".com";
         String homePhone = RandomStringUtils.randomNumeric(8);
         String workPhone = RandomStringUtils.randomNumeric(8);
-        String mobilePhone = RandomStringUtils.randomNumeric(8);;
+        String mobilePhone = RandomStringUtils.randomNumeric(8);
         String isoCountryCode= "IRE";
         Date created = DateTime.now().toDate();
         Date modified= DateTime.parse("2010-12-28", dateTimeFormatter).toDate();
 
         return new Contact.Builder().setId(id).setTitle(title).setFirstName(firstName).setMiddleName(middleName).setSurname(surname).setModified(modified).setCreated(created).setAccountId(accountId).setAddressLine1(addressLine1).setAddressLine2(addressLine2).setAddressLine3(addressLine3).setAddressLine4(addressLine4)
-                .setEmail(email).setHomePhone(homePhone).setMobilePhone(mobilePhone).setWorkPhone(workPhone).setIsoCountryCode(isoCountryCode).build();
+                .setPostcode(postcode).setEmail(email).setHomePhone(homePhone).setMobilePhone(mobilePhone).setWorkPhone(workPhone).setIsoCountryCode(isoCountryCode).build();
 
     }
 
+    public static Contact getPartialTestAccount() {
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd");
+        Integer id = Integer.valueOf(2);
+        Integer accountId = Integer.valueOf(3);
+        String firstName= RandomStringUtils.randomAlphabetic(12);
+        String surname= RandomStringUtils.randomAlphabetic(12);
+        Date created = DateTime.now().toDate();
+        Date modified= DateTime.parse("2010-12-28", dateTimeFormatter).toDate();
+
+        return new Contact.Builder().setId(id).setFirstName(firstName).setSurname(surname).setModified(modified).setCreated(created).setAccountId(accountId).build();
+
+
+
+    }
 }

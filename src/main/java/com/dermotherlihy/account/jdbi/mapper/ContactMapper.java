@@ -32,6 +32,7 @@ public class ContactMapper implements ResultSetMapper<Contact> {
         String addressLine2= resultSet.getString("ADDRESS_LINE_2");
         String addressLine3= resultSet.getString("ADDRESS_LINE_3");
         String addressLine4= resultSet.getString("ADDRESS_LINE_4");
+        String postcode= resultSet.getString("POSTCODE");
         String email= resultSet.getString("EMAIL");
         String homePhone= resultSet.getString("HOME_PHONE");
         String workPhone= resultSet.getString("WORK_PHONE");
@@ -41,7 +42,7 @@ public class ContactMapper implements ResultSetMapper<Contact> {
         Date modified=resultSet.getDate("MODIFIED");
 
         Contact contact = new Contact.Builder().setAccountId(accountId).setId(id).setTitle(title).setFirstName(firstName).setMiddleName(middleName).setSurname(surname).setAddressLine1(addressLine1).setAddressLine2(addressLine2).
-                setAddressLine3(addressLine3).setAddressLine4(addressLine4).setEmail(email).setHomePhone(homePhone).setMobilePhone(mobilePhone).setWorkPhone(workPhone).setIsoCountryCode(isoCountryCode).setCreated(created).setModified(modified).build();
+                setAddressLine3(addressLine3).setAddressLine4(addressLine4).setPostcode(postcode).setEmail(email).setHomePhone(homePhone).setMobilePhone(mobilePhone).setWorkPhone(workPhone).setIsoCountryCode(isoCountryCode).setCreated(created).setModified(modified).build();
         return contact;
      }
 

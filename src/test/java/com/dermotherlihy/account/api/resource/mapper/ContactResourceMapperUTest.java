@@ -27,6 +27,7 @@ public class ContactResourceMapperUTest {
     private ContactResourceMapper testObj = new ContactResourceMapper();
 
 
+
     @Test
     public void testMappingFromResourceToModelObject(){
         ContactResource contactResource = ContactResourceTestData.createRandomFullResourceWithoutId();
@@ -42,9 +43,11 @@ public class ContactResourceMapperUTest {
         Assert.assertEquals(contactResource.getAddressLine2(),contact.getAddressLine2().get());
         Assert.assertEquals(contactResource.getAddressLine3(),contact.getAddressLine3().get());
         Assert.assertEquals(contactResource.getAddressLine4(),contact.getAddressLine4().get());
+        Assert.assertEquals(contactResource.getPostcode(),contact.getPostcode().get());
         Assert.assertEquals(contactResource.getEmail(),contact.getEmail().get());
         Assert.assertEquals(contactResource.getMobilePhone(),contact.getMobilePhone().get());
-        Assert.assertEquals(contactResource.getMobilePhone(),contact.getMobilePhone().get());
+        Assert.assertEquals(contactResource.getHomePhone(),contact.getHomePhone().get());
+        Assert.assertEquals(contactResource.getWorkPhone(),contact.getWorkPhone().get());
         Assert.assertEquals(contactResource.getIsoCountryCode(),contact.getIsoCountryCode().get());
     }
 
@@ -65,10 +68,22 @@ public class ContactResourceMapperUTest {
         Assert.assertEquals(contactResource.getAddressLine2(),contact.getAddressLine2().get());
         Assert.assertEquals(contactResource.getAddressLine3(),contact.getAddressLine3().get());
         Assert.assertEquals(contactResource.getAddressLine4(),contact.getAddressLine4().get());
+        Assert.assertEquals(contactResource.getPostcode(),contact.getPostcode().get());
         Assert.assertEquals(contactResource.getEmail(),contact.getEmail().get());
-        Assert.assertEquals(contactResource.getMobilePhone(),contact.getMobilePhone().get());
+        Assert.assertEquals(contactResource.getWorkPhone(),contact.getWorkPhone().get());
         Assert.assertEquals(contactResource.getMobilePhone(),contact.getMobilePhone().get());
         Assert.assertEquals(contactResource.getIsoCountryCode(),contact.getIsoCountryCode().get());
+    }
+
+    @Test
+    public void testMappingToResourceFromPartialModelObject(){
+        Contact contact = ContactTestData.getPartialTestAccount();
+        ContactResource contactResource = testObj.mapContactResource(contact);
+        Assert.assertNotNull(contactResource.getCreated());
+        Assert.assertNotNull(contactResource.getModified());
+        Assert.assertEquals(contactResource.getFirstName(),contact.getFirstName());
+        Assert.assertEquals(contactResource.getSurname(),contact.getSurname());
+        Assert.assertEquals(Integer.valueOf(contactResource.getAccountId()),Integer.valueOf(contact.getAccountId()));
     }
 
 

@@ -66,6 +66,9 @@
             <column name="ADDRESS_LINE_4"  type="varchar(200)">
                 <constraints nullable="true" />
             </column>
+            <column name="POSTCODE"  type="varchar(20)">
+                <constraints nullable="true" />
+            </column>
             <column name="COUNTRY_ISO_CODE"  type="varchar(3)">
                 <constraints nullable="true" />
             </column>

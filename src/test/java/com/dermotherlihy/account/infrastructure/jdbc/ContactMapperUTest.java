@@ -50,6 +50,7 @@ public class ContactMapperUTest {
         Assert.assertEquals(testContact.getAddressLine2().get(), contact.getAddressLine2().get());
         Assert.assertEquals(testContact.getAddressLine3().get(), contact.getAddressLine3().get());
         Assert.assertEquals(testContact.getAddressLine4().get(), contact.getAddressLine4().get());
+        Assert.assertEquals(testContact.getPostcode().get(), contact.getPostcode().get());
         Assert.assertEquals(testContact.getIsoCountryCode().get(), contact.getIsoCountryCode().get());
         Assert.assertEquals(testContact.getEmail().get(), contact.getEmail().get());
         Assert.assertEquals(testContact.getCreated(), contact.getCreated());
@@ -73,6 +74,7 @@ public class ContactMapperUTest {
         Mockito.when(resultSetMock.getString("ADDRESS_LINE_2")).thenReturn(testAccount.getAddressLine2().get());
         Mockito.when(resultSetMock.getString("ADDRESS_LINE_3")).thenReturn(testAccount.getAddressLine3().get());
         Mockito.when(resultSetMock.getString("ADDRESS_LINE_4")).thenReturn(testAccount.getAddressLine4().get());
+        Mockito.when(resultSetMock.getString("POSTCODE")).thenReturn(testAccount.getPostcode().get());
         Mockito.when(resultSetMock.getString("COUNTRY_ISO_CODE")).thenReturn(testAccount.getIsoCountryCode().get());
         Mockito.when(resultSetMock.getString("EMAIL")).thenReturn(testAccount.getEmail().get());
         Mockito.when(resultSetMock.getDate("CREATED")).thenReturn(new java.sql.Date(testAccount.getCreated().getTime()));

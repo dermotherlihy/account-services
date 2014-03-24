@@ -19,7 +19,8 @@ import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
  */
 public interface ContactDAO {
 
-    @SqlUpdate("insert into contact (account_id, title, first_name, middle_name, surname, home_phone, work_phone, mobile_phone, address_line_1, address_line_2, address_line_3, address_line_4, country_iso_code, email) values (:accountId, :title, :firstName, :middleName, :surname, :homePhone, :workPhone, :mobilePhone, :addressLine1, :addressLine2, :addressLine3, :addressLine4, :countryIsoCode, :email)")
+    @SqlUpdate("insert into contact (account_id, title, first_name, middle_name, surname, home_phone, work_phone, mobile_phone, address_line_1, address_line_2, address_line_3, address_line_4, postcode, country_iso_code, email) values " +
+                                   "(:accountId, :title, :firstName, :middleName, :surname, :homePhone, :workPhone, :mobilePhone, :addressLine1, :addressLine2, :addressLine3, :addressLine4, :postcode, :isoCountryCode, :email)")
     void insert(@BindBean Contact contact);
 
     @SqlQuery("select * from contact where id = :id")

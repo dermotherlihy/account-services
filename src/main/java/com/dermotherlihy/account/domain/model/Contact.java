@@ -23,6 +23,7 @@ public class Contact {
     private Optional<String> addressLine2;
     private Optional<String> addressLine3;
     private Optional<String> addressLine4;
+    private Optional<String> postcode;
     private Optional<String> email;
     private Optional<String> homePhone;
     private Optional<String> workPhone;
@@ -42,6 +43,7 @@ public class Contact {
         this.addressLine2 = Optional.fromNullable(builder.addressLine2);
         this.addressLine3 = Optional.fromNullable(builder.addressLine3);
         this.addressLine4 = Optional.fromNullable(builder.addressLine4);
+        this.postcode=Optional.fromNullable(builder.postcode);
         this.email=Optional.fromNullable(builder.email);
         this.homePhone=Optional.fromNullable(builder.homePhone);
         this.workPhone=Optional.fromNullable(builder.workPhone);
@@ -91,6 +93,10 @@ public class Contact {
         return addressLine4;
     }
 
+    public Optional<String> getPostcode() {
+        return postcode;
+    }
+
     public Optional<String> getEmail() {
         return email;
     }
@@ -138,6 +144,7 @@ public class Contact {
         private String isoCountryCode;
         private Date created;
         private Date modified;
+        private String postcode;
 
 
         public Builder setId(int id) {
@@ -224,10 +231,16 @@ public class Contact {
             this.workPhone = workPhone;
             return this;
         }
+        public Builder setPostcode(String postcode) {
+            this.postcode = postcode;
+            return this;
+        }
 
         public Contact build(){
             return new Contact(this);
         }
+
+
     }
 
  }

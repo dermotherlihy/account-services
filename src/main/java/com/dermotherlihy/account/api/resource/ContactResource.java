@@ -37,6 +37,8 @@ public class ContactResource {
     private String addressLine3;
     @JsonProperty(value = "address-line-4")
     private String addressLine4;
+    @JsonProperty(value = "postcode")
+    private String postcode;
     @JsonProperty(value = "email")
     private String email;
     @JsonProperty(value = "work-phone")
@@ -45,12 +47,14 @@ public class ContactResource {
     private String homePhone;
     @JsonProperty(value = "mobile-phone-number")
     private String mobilePhone;
-    @JsonProperty(value = "iso-country-ode")
+    @JsonProperty(value = "iso-country-code")
     private String isoCountryCode;
     @JsonProperty(value = "created")
     private Date created;
     @JsonProperty(value = "modified")
     private Date modified;
+
+
 
     public String getId() {
         return id;
@@ -60,6 +64,10 @@ public class ContactResource {
         this.id = id;
     }
 
+
+    public String getWorkPhone() {
+        return workPhone;
+    }
 
     public String getTitle() {
         return title;
@@ -183,5 +191,13 @@ public class ContactResource {
 
     public void setWorkPhone(String workPhone) {
         this.workPhone = workPhone;
+    }
+
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
+    }
+
+    public String getPostcode() {
+        return postcode;
     }
 }

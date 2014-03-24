@@ -14,8 +14,8 @@ public class ContactResourceMapper {
 
     public Contact mapContact(ContactResource contactResource) {
         Contact contact = new Contact.Builder().setAccountId(Integer.valueOf(contactResource.getAccountId())).setTitle(contactResource.getTitle()).setFirstName(contactResource.getFirstName()).setMiddleName(contactResource.getMiddleName()).setSurname(contactResource.getSurname()).setEmail(contactResource.getEmail()).
-                setAddressLine4(contactResource.getAddressLine4()).setAddressLine3(contactResource.getAddressLine3()).setAddressLine2(contactResource.getAddressLine2())
-                .setAddressLine1(contactResource.getAddressLine1()).setHomePhone(contactResource.getHomePhone()).setMobilePhone(contactResource.getMobilePhone()).setIsoCountryCode(contactResource.getIsoCountryCode()).build();
+                setPostcode(contactResource.getPostcode()).setAddressLine4(contactResource.getAddressLine4()).setAddressLine3(contactResource.getAddressLine3()).setAddressLine2(contactResource.getAddressLine2())
+                .setAddressLine1(contactResource.getAddressLine1()).setIsoCountryCode(contactResource.getIsoCountryCode()).setHomePhone(contactResource.getHomePhone()).setMobilePhone(contactResource.getMobilePhone()).setWorkPhone(contactResource.getWorkPhone()).build();
 
         return contact;
     }
@@ -33,8 +33,9 @@ public class ContactResourceMapper {
         contactResource.setAddressLine2(contact.getAddressLine2().orNull());
         contactResource.setAddressLine3(contact.getAddressLine3().orNull());
         contactResource.setAddressLine4(contact.getAddressLine4().orNull());
-        contactResource.setIsoCountryCode(contact.getIsoCountryCode().orNull());
+        contactResource.setPostcode(contact.getPostcode().orNull());
 
+        contactResource.setIsoCountryCode(contact.getIsoCountryCode().orNull());
 
         contactResource.setAccountId(contact.getAccountId().toString());
         contactResource.setMobilePhone(contact.getMobilePhone().orNull());

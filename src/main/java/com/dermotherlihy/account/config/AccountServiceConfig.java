@@ -1,7 +1,10 @@
 package com.dermotherlihy.account.config;
 
+import com.dermotherlihy.account.api.endpoint.ContactEndpoint;
+import com.dermotherlihy.account.domain.service.ContactService;
 import com.dermotherlihy.account.jdbi.AccountDAO;
 import com.dermotherlihy.account.domain.service.AccountService;
+import com.dermotherlihy.account.jdbi.ContactDAO;
 import com.dermotherlihy.account.jdbi.serializer.DateAsTimestampArgument;
 import com.dermotherlihy.account.jdbi.serializer.SexAsStringArgument;
 import com.dermotherlihy.account.api.endpoint.HealthCheckEndpoint;
@@ -44,15 +47,31 @@ public class AccountServiceConfig extends Service<BasicConfiguration>{
     public void run(BasicConfiguration basicConfiguration, Environment environment) throws Exception {
        final DBIFactory factory = new DBIFactory();
        final DBI jdbi = factory.build(environment, basicConfiguration.getDatabaseConfiguration(), "mysql");
-       jdbi.registerArgumentFactory(new SexAsStringArgument());
-       jdbi.registerArgumentFactory(new DateAsTimestampArgument());
 
-       final AccountDAO accountDAO = jdbi.onDemand(AccountDAO.class);
-       AccountService accountService = new AccountService(accountDAO);
-       environment.addResource(new AccountEndpoint(accountService));
+       addArgumentFactories(jdbi);
+       addAccountService(environment, jdbi);
+       addContactService(environment, jdbi);
+
        environment.addHealthCheck(new HealthCheckEndpoint("Hello"));
        ObjectMapperFactory objectMapperFactory = new ObjectMapperFactory();
        environment.addResource(objectMapperFactory);
 
+    }
+
+    private void addArgumentFactories(DBI jdbi) {
+        jdbi.registerArgumentFactory(new SexAsStringArgument());
+        jdbi.registerArgumentFactory(new DateAsTimestampArgument());
+    }
+
+    private void addContactService(Environment environment, DBI jdbi) {
+        final ContactDAO contactDAO = jdbi.onDemand(ContactDAO.class);
+        ContactService contactService = new ContactService(contactDAO);
+        environment.addResource(new ContactEndpoint(contactService));
+    }
+
+    private void addAccountService(Environment environment, DBI jdbi) {
+        final AccountDAO accountDAO = jdbi.onDemand(AccountDAO.class);
+        AccountService accountService = new AccountService(accountDAO);
+        environment.addResource(new AccountEndpoint(accountService));
     }
 }
