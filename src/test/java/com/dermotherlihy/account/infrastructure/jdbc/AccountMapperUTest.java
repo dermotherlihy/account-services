@@ -36,7 +36,7 @@ public class AccountMapperUTest {
 
     @Test
     public void testAccountRowMapper() throws Exception{
-       Account testAccount = new AccountTestData().getTestAccount();
+       Account testAccount = AccountTestData.getFullyPopulatedTestAccount();
        Account account = testObj.map(0,getTestAccountResultSet(testAccount),statementContext);
        Assert.assertEquals(testAccount.getId(), account.getId());
        Assert.assertEquals(testAccount.getUsername(), account.getUsername());

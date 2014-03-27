@@ -20,7 +20,7 @@ public class AccountResourceMapperUTest {
     @Test
     public void testAccountResourceCreation(){
 
-         Account account = AccountTestData.getTestAccount();
+         Account account = AccountTestData.getFullyPopulatedTestAccount();
          AccountResource accountResource = AccountResourceMapper.createAccountResource(account);
          Assert.assertEquals(account.getDob(), accountResource.getDateOfBirth());
          Assert.assertEquals(account.getUsername(), accountResource.getUsername());

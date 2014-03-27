@@ -33,6 +33,9 @@ public class AccountResource {
     @JsonDeserialize(using = JsonDateDeserializer.class)
     private Date dateOfBirth;
 
+    @JsonProperty (value = "password")
+    private String password;
+
     @JsonProperty(value = "modified")
     @JsonSerialize(using = JsonDateSerializer.class)
     private Date modified;
@@ -52,6 +55,14 @@ public class AccountResource {
 
     public Date getDateOfBirth() {
         return dateOfBirth;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setDateOfBirth(Date dateOfBirth) {

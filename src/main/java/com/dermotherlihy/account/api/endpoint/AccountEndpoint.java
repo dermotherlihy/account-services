@@ -9,6 +9,9 @@ import com.dermotherlihy.account.domain.service.AccountService;
 import javax.annotation.Resource;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -31,15 +34,21 @@ public class AccountEndpoint {
     }
 
     @GET
+    public AccountResource getAccountById(@QueryParam("id") String id){
+        Account account= accountService.findById(id);
+        return AccountResourceMapper.createAccountResource(account);
+    }
+
+    @GET
     public AccountResource getAccountByUserName(@QueryParam("username") String username){
       Account account= accountService.findByUsername(username);
       return AccountResourceMapper.createAccountResource(account);
     }
 
     @POST
-    public void create(AccountResource accountResource){
+    public Response create(AccountResource accountResource) throws URISyntaxException {
         Account account = new Account.Builder().setUsername(accountResource.getUsername()).setSex(Sex.valueOf(accountResource.getSex())).setDob(accountResource.getDateOfBirth()).build();
-        accountService.insert(account);
+        account=accountService.insert(account);
+        return Response.status(Response.Status.CREATED).contentLocation(new URI(new StringBuilder("/account").append("/").append(account.getId()).toString())).build();
     }
-
 }

@@ -21,9 +21,12 @@ public class AccountTestData {
     public static final Date MODIFIED = new Date();
     public static final Date DATE_OF_BIRTH = new Date();
     public static final Sex SEX_MALE= Sex.MALE;
+    public static final String PASSWORD = "password";
 
-    public static Account getTestAccount(){
-        return new Account.Builder().setId(ID).setUsername(USERNAME).setCreated(CREATED).setModified(MODIFIED).setSex(SEX_MALE).setUsername(USERNAME).setDob(DATE_OF_BIRTH).build();
+    public static Account getFullyPopulatedTestAccount(){
+        return new Account.Builder().setId(ID).setUsername(USERNAME).setCreated(CREATED).setModified(MODIFIED).setSex(SEX_MALE).setUsername(USERNAME).setPassword(PASSWORD).setDob(DATE_OF_BIRTH).build();
     }
+
+
 
 }
