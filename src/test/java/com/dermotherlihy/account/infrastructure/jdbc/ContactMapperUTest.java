@@ -1,6 +1,6 @@
 package com.dermotherlihy.account.infrastructure.jdbc;
 import com.dermotherlihy.account.domain.model.Contact;
-import com.dermotherlihy.account.jdbi.mapper.ContactMapper;
+import com.dermotherlihy.account.jdbc.mapper.ContactMapper;
 import com.dermotherlihy.account.testdata.ContactTestData;
 import org.junit.Assert;
 import org.junit.Before;

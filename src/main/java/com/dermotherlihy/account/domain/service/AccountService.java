@@ -1,15 +1,13 @@
 package com.dermotherlihy.account.domain.service;
 
 import com.dermotherlihy.account.domain.model.Account;
-import com.dermotherlihy.account.jdbi.AccountDAO;
-import com.dermotherlihy.account.jdbi.SecurityDAO;
-import org.eclipse.jetty.util.security.Credential;
+import com.dermotherlihy.account.jdbc.AccountDAO;
+import com.dermotherlihy.account.jdbc.SecurityDAO;
 import org.skife.jdbi.v2.sqlobject.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,17 +19,15 @@ import java.security.NoSuchAlgorithmException;
 @Service
 public class AccountService {
 
+    @Autowired
     private AccountDAO accountDAO;
 
+    @Autowired
     private SecurityDAO securityDAO;
 
-    public AccountService(AccountDAO accountDAO, SecurityDAO securityDAO) {
-        this.securityDAO=securityDAO;
-        this.accountDAO=accountDAO;
-    }
 
     @Transaction
-    public Account insert(Account account) throws NoSuchAlgorithmException {
+    public Account insert(Account account) throws Exception {
         accountDAO.insert(account);
         Account createdAccount= accountDAO.findNameByUsername(account.getUsername());
         MessageDigest messageDigest = MessageDigest.getInstance("MD5");

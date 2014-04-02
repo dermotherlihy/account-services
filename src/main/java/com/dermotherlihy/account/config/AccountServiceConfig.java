@@ -1,14 +1,8 @@
 package com.dermotherlihy.account.config;
 
-import com.dermotherlihy.account.api.endpoint.ContactEndpoint;
-import com.dermotherlihy.account.domain.service.ContactService;
-import com.dermotherlihy.account.jdbi.AccountDAO;
-import com.dermotherlihy.account.domain.service.AccountService;
-import com.dermotherlihy.account.jdbi.ContactDAO;
-import com.dermotherlihy.account.jdbi.serializer.DateAsTimestampArgument;
-import com.dermotherlihy.account.jdbi.serializer.SexAsStringArgument;
-import com.dermotherlihy.account.api.endpoint.HealthCheckEndpoint;
-import com.dermotherlihy.account.api.endpoint.AccountEndpoint;
+import com.dermotherlihy.account.config.spring.AccountServicesSpringConfiguration;
+import com.dermotherlihy.account.config.spring.SpringContextLoaderListener;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.yammer.dropwizard.Service;
 import com.yammer.dropwizard.config.Bootstrap;
 import com.yammer.dropwizard.config.Environment;
@@ -16,7 +10,14 @@ import com.yammer.dropwizard.db.DatabaseConfiguration;
 import com.yammer.dropwizard.jdbi.DBIFactory;
 import com.yammer.dropwizard.json.ObjectMapperFactory;
 import com.yammer.dropwizard.migrations.MigrationsBundle;
+import com.yammer.dropwizard.tasks.Task;
+import com.yammer.metrics.core.HealthCheck;
 import org.skife.jdbi.v2.DBI;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+
+import javax.ws.rs.Path;
+import javax.ws.rs.ext.Provider;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,50 +29,79 @@ import org.skife.jdbi.v2.DBI;
 
 public class AccountServiceConfig extends Service<BasicConfiguration>{
 
-    public static void main(String[] args) throws Exception{
+
+
+
+    public static void main(String[] args) throws Exception {
         new AccountServiceConfig().run(args);
     }
 
     @Override
     public void initialize(Bootstrap<BasicConfiguration> bootstrap) {
-        bootstrap.setName("hello-world");
+        bootstrap.setName("account-service");
+        bootstrap.getObjectMapperFactory().setSerializationInclusion(JsonInclude.Include.NON_NULL);
         bootstrap.addBundle(new MigrationsBundle<BasicConfiguration>() {
             @Override
             public DatabaseConfiguration getDatabaseConfiguration(BasicConfiguration configuration) {
                 return configuration.getDatabaseConfiguration();
             }
         });
+
+
     }
 
     @Override
-    public void run(BasicConfiguration basicConfiguration, Environment environment) throws Exception {
-       final DBIFactory factory = new DBIFactory();
-       final DBI jdbi = factory.build(environment, basicConfiguration.getDatabaseConfiguration(), "mysql");
+    public void run(BasicConfiguration configuration, Environment environment) throws Exception {
 
-       addArgumentFactories(jdbi);
-       addAccountService(environment, jdbi);
-       addContactService(environment, jdbi);
+        //init Spring context
+        //before we init the app context, we have to create a parent context with all the config objects others rely on to get initialized
+        AnnotationConfigWebApplicationContext parent = new AnnotationConfigWebApplicationContext();
+        AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
 
-       environment.addHealthCheck(new HealthCheckEndpoint("Hello"));
-       ObjectMapperFactory objectMapperFactory = new ObjectMapperFactory();
-       environment.addResource(objectMapperFactory);
+        parent.refresh();
+        parent.getBeanFactory().registerSingleton("configuration",configuration);
+        parent.registerShutdownHook();
+        parent.start();
 
-    }
+        //the real main app context has a link to the parent context
+        ctx.setParent(parent);
+        ctx.register(AccountServicesSpringConfiguration.class);
+        ctx.refresh();
+        ctx.registerShutdownHook();
+        ctx.start();
 
-    private void addArgumentFactories(DBI jdbi) {
-        jdbi.registerArgumentFactory(new SexAsStringArgument());
-        jdbi.registerArgumentFactory(new DateAsTimestampArgument());
-    }
+        //now that Spring is started, let's get all the beans that matter into DropWizard
 
-    private void addContactService(Environment environment, DBI jdbi) {
-        final ContactDAO contactDAO = jdbi.onDemand(ContactDAO.class);
-        ContactService contactService = new ContactService(contactDAO);
-        environment.addResource(new ContactEndpoint(contactService));
-    }
+        //health checks
+        Map<String, HealthCheck> healthChecks = ctx.getBeansOfType(HealthCheck.class);
+        for(Map.Entry<String,HealthCheck> entry : healthChecks.entrySet()) {
+            environment.addHealthCheck(entry.getValue());
+        }
 
-    private void addAccountService(Environment environment, DBI jdbi) {
-        final AccountDAO accountDAO = jdbi.onDemand(AccountDAO.class);
-        AccountService accountService = new AccountService(accountDAO);
-        environment.addResource(new AccountEndpoint(accountService));
-    }
+        //resources
+        Map<String, Object> resources = ctx.getBeansWithAnnotation(Path.class);
+        for(Map.Entry<String,Object> entry : resources.entrySet()) {
+            environment.addResource(entry.getValue());
+        }
+
+        //tasks
+        Map<String, Task> tasks = ctx.getBeansOfType(Task.class);
+        for(Map.Entry<String,Task> entry : tasks.entrySet()) {
+            environment.addTask(entry.getValue());
+        }
+
+        //JAX-RS providers
+        Map<String, Object> providers = ctx.getBeansWithAnnotation(Provider.class);
+        for(Map.Entry<String,Object> entry : providers.entrySet()) {
+            environment.addProvider(entry.getValue());
+        }
+
+        //last, but not least, let's link Spring to the embedded Jetty in Dropwizard
+        environment.addServletListeners(new SpringContextLoaderListener(ctx));
+
+        ObjectMapperFactory objectMapperFactory = new ObjectMapperFactory();
+        environment.addResource(objectMapperFactory);
+
+   }
+
 }

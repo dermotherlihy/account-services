@@ -1,8 +1,9 @@
-package com.dermotherlihy.account.jdbi.mapper;
+package com.dermotherlihy.account.jdbc.mapper;
 
 import com.dermotherlihy.account.domain.model.Account;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
+import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -15,10 +16,10 @@ import java.sql.SQLException;
  * Time: 19:21
  * To change this template use File | Settings | File Templates.
  */
-public class AccountMapper implements ResultSetMapper<Account>{
+public class AccountMapper implements ParameterizedRowMapper<Account> {
 
     @Override
-    public Account map(int i, ResultSet resultSet, StatementContext statementContext) throws SQLException {
+    public Account mapRow(ResultSet resultSet, int i) throws SQLException {
         Integer id= resultSet.getInt("ID");
         String userName= resultSet.getString("USERNAME");
         String sex= resultSet.getString("SEX");

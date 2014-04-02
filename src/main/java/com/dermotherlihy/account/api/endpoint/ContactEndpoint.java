@@ -4,6 +4,8 @@ import com.dermotherlihy.account.api.resource.ContactResource;
 import com.dermotherlihy.account.api.resource.mapper.ContactResourceMapper;
 import com.dermotherlihy.account.domain.model.Contact;
 import com.dermotherlihy.account.domain.service.ContactService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.ws.rs.*;
@@ -19,16 +21,15 @@ import javax.ws.rs.core.MediaType;
 @Path("/contact")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@Service
 public class ContactEndpoint {
 
 
+    @Autowired
     private ContactService contactService;
-    private ContactResourceMapper contactResourceMapper;
 
-    public ContactEndpoint(ContactService accountService) {
-        this.contactService=accountService;
-        this.contactResourceMapper = new ContactResourceMapper();
-    }
+    @Autowired
+    private ContactResourceMapper contactResourceMapper;
 
     @POST
     public void create(ContactResource contactResource){
@@ -41,5 +42,8 @@ public class ContactEndpoint {
          Contact contact = contactService.findContactById(contactId);
          return contactResourceMapper.mapContactResource(contact);
     }
+
+
+
 
 }

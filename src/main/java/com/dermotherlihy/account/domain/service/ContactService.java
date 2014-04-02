@@ -1,10 +1,9 @@
 package com.dermotherlihy.account.domain.service;
 
-import com.dermotherlihy.account.domain.model.Account;
 import com.dermotherlihy.account.domain.model.Contact;
-import com.dermotherlihy.account.jdbi.AccountDAO;
-import com.dermotherlihy.account.jdbi.ContactDAO;
+import com.dermotherlihy.account.jdbc.ContactDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,13 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Time: 19:16
  * To change this template use File | Settings | File Templates.
  */
+@Service
 public class ContactService {
 
+    @Autowired
     private ContactDAO contactDAO;
 
-    public ContactService(ContactDAO contactDAO) {
-        this.contactDAO=contactDAO;
-    }
+
     public void insert(Contact contact){
         contactDAO.insert(contact);
     }

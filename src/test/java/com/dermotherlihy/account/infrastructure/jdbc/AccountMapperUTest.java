@@ -2,7 +2,7 @@ package com.dermotherlihy.account.infrastructure.jdbc;
 
 import com.dermotherlihy.account.domain.model.Account;
 
-import com.dermotherlihy.account.jdbi.mapper.AccountMapper;
+import com.dermotherlihy.account.jdbc.mapper.AccountMapper;
 import com.dermotherlihy.account.testdata.AccountTestData;
 import org.junit.Assert;
 import org.junit.Before;

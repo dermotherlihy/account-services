@@ -1,10 +1,9 @@
-package com.dermotherlihy.account.jdbi.mapper;
+package com.dermotherlihy.account.jdbc.mapper;
 
-import com.dermotherlihy.account.domain.model.Account;
 import com.dermotherlihy.account.domain.model.Contact;
-import com.google.common.base.Optional;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
+import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -17,11 +16,10 @@ import java.sql.SQLException;
  * Time: 18:09
  * To change this template use File | Settings | File Templates.
  */
-public class ContactMapper implements ResultSetMapper<Contact> {
+public class ContactMapper implements ParameterizedRowMapper<Contact> {
 
     @Override
-    public Contact map(int i, ResultSet resultSet, StatementContext statementContext) throws SQLException {
-
+    public Contact mapRow(ResultSet resultSet, int i) throws SQLException {
         Integer id = resultSet.getInt("ID");
         Integer accountId = resultSet.getInt("ACCOUNT_ID");
         String title = resultSet.getString("TITLE");
@@ -44,6 +42,6 @@ public class ContactMapper implements ResultSetMapper<Contact> {
         Contact contact = new Contact.Builder().setAccountId(accountId).setId(id).setTitle(title).setFirstName(firstName).setMiddleName(middleName).setSurname(surname).setAddressLine1(addressLine1).setAddressLine2(addressLine2).
                 setAddressLine3(addressLine3).setAddressLine4(addressLine4).setPostcode(postcode).setEmail(email).setHomePhone(homePhone).setMobilePhone(mobilePhone).setWorkPhone(workPhone).setIsoCountryCode(isoCountryCode).setCreated(created).setModified(modified).build();
         return contact;
-     }
+    }
 
 }
