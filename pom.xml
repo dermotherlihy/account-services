@@ -7,6 +7,9 @@
     <groupId>account-services</groupId>
     <artifactId>account-services</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <properties>
+        <spring-version>3.2.6.RELEASE</spring-version>
+    </properties>
 
     <dependencies>
 
@@ -26,12 +29,37 @@
             <version>0.6.2</version>
         </dependency>
 
+
         <!--Spring-->
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-            <version>3.2.4.RELEASE</version>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring-version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+
+
+        <!--Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>0.11.6</version>
+        </dependency>
+
 
         <!--Database -->
         <dependency>

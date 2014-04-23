@@ -36,8 +36,7 @@ public class ContactMapperUTest {
     public void testContactRowMapper() throws Exception{
         Contact testContact = ContactTestData.getTestAccount();
         ResultSet testResultSet = getTestContactResultSet(testContact);
-
-        Contact contact = testObj.map(0,testResultSet,statementContext);
+        Contact contact = testObj.mapRow(testResultSet,0);
         Assert.assertEquals(testContact.getId(), contact.getId());
         Assert.assertEquals(testContact.getAccountId(), contact.getAccountId());
         Assert.assertEquals(testContact.getFirstName(), contact.getFirstName());

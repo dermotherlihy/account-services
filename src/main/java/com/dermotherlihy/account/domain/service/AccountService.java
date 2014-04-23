@@ -40,7 +40,7 @@ public class AccountService {
         return accountDAO.findNameByUsername(username);
     }
 
-    public Account findById(String id) {
+    public Account findById(Integer id) {
         return accountDAO.findById(id);
     }
 }

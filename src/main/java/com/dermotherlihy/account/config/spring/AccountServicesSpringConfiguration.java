@@ -18,7 +18,7 @@ import org.springframework.context.annotation.ImportResource;
  */
 @Configuration
 @ComponentScan(basePackages = "com.dermotherlihy.account.*")
-@ImportResource({"classpath:applicationContext-infrastructure-config.xml"})
+@ImportResource({"classpath:META-INF/applicationContext-infrastructure-config.xml"})
 public class AccountServicesSpringConfiguration {
 
 }

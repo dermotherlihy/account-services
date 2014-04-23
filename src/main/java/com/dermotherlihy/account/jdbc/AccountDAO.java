@@ -16,6 +16,6 @@ import org.springframework.stereotype.Repository;
 public interface AccountDAO {
     void insert(@BindBean Account account);
     Account findNameByUsername(@Bind("username") String username);
-    Account findById(String id);
+    Account findById(Integer id);
 
 }

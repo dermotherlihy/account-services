@@ -43,7 +43,7 @@ public class AccountDAOImpl implements AccountDAO{
    }
 
     @Override
-    public Account findById(String id) {
+    public Account findById(Integer id) {
         String sql = "select * from Account where id = :id";
 
         MapSqlParameterSource paramMap = new MapSqlParameterSource();

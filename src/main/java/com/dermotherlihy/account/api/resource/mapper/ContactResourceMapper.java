@@ -2,6 +2,7 @@ package com.dermotherlihy.account.api.resource.mapper;
 
 import com.dermotherlihy.account.api.resource.ContactResource;
 import com.dermotherlihy.account.domain.model.Contact;
+import org.springframework.stereotype.Component;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,6 +11,7 @@ import com.dermotherlihy.account.domain.model.Contact;
  * Time: 19:25
  * To change this template use File | Settings | File Templates.
  */
+@Component
 public class ContactResourceMapper {
 
     public Contact mapContact(ContactResource contactResource) {
